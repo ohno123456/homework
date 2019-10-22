@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue bind</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+</head>
+<style>
+.red{
+    color:red
+}
+</style>
+<body>
+    <div id = "app">
+   <img :src = "img" :alt="title" :style = "{width: imgWidth, border: '10px solid red'}">
+   <!-- v-bind 可以简写为 : -->
+   <!-- class
+    1.只识别第一个 class，多个可以采用 [classA,classB]
+    2.
+-->
+   <!-- style -->
+   <h4 :class = "{red:h4Flag}">{{title}}</h4>
+    </div>
+</body>
+
+<script>
+const vm = new Vue({
+    el:"#app",
+    data:{
+    title:"Vue从入门到实战【渡一教育】",
+    img:"https://10.url.cn/qqcourse_logo_ng/ajNVdqHZLLAFRnhiclWJxd81qhiauZY3xNlbn3Mze2rJd9x7dmeLJC0vQzicbyz2dXsALS8cIX2gMM/356"
+   ,
+    h4Class:"red",
+    h4Flag:true,
+    imgWidth: "200px"
+
+}
+
+});
+</script>
+</html>
