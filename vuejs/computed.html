@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>computed</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+</head>
+
+<!-- conputed  用于data属性的组合 -->
+<!-- data > methods > computed -->
+<body>
+    <div id = "app">
+        {{zuhe}}
+    </div>
+</body>
+
+<script>
+const vm = new Vue({
+el:"#app",
+data:{
+    name:"liuyu",
+    age:"18"
+},
+computed:{
+ zuhe(){
+
+    //注意汉字和英文组合起来之后的形式，采用英文`隔离，变量采用${}
+    return `姓名：${this.name}，年龄：${this.age}`;
+ }
+}
+
+});
+</script>
+</html>
