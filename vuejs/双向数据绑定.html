@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>双向数据绑定</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+</head>
+
+<body>
+    <!-- 采用的input时间一般会产生很多冗余，产生了v-model的语法糖 -->
+    <div id="app">
+        <input type="text" v-model="value">
+        <span>{{value}}</span><br>
+        <textarea v-model = "value" cols="30" rows="10"></textarea>
+    </div>
+</body>
+<script>
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            value: "liuyu",
+            checked:true
+        }
+
+    });
+</script>
+
+</html>
