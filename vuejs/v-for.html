@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-for</title>
+</head>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="(value, key, index) in obj">{{value}}--{{key}}--{{index}}</li>
+        </ul>
+        <ul>
+            <li v-for="item in 10">{{item}}</li>
+        </ul>
+        <ul>
+            <li v-for="item in 'liuyu'">{{item}}</li>
+        </ul>
+        <ul>
+            <!-- key值是为了复用标签，对于本身没有变化的dom采用的移动 -->
+            <!-- vue默认使用可以复用的元素，key可以区分 -->
+            <!-- 不能通过数字索引、长度去更改数组的内容，vue重写的数组渲染方法 -->
+
+            <li v-for="fruit in fruitArr" :key="fruit">{{fruit}}</li>
+        </ul>
+
+    </div>
+
+</body>
+
+<script>
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            //循环数组 item index
+            arr: ["html", "js", "Vue"],
+            //循环对象 value key index
+            obj: {
+                name: "liuyu",
+                age: 18,
+                looks: "beauty"
+            },
+            fruitArr: ["香蕉", "苹果", "大鸭梨"]
+        }
+
+    });
+    setTimeout(() => {
+        vm.fruitArr.reverse();
+    }, 2000);
+</script>
+
+</html>
