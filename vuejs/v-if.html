@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-if</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+</head>
+
+<!-- v-if  v-else-if  v-else 采用移除、显示dom，逻辑判断显示时使用 -->
+
+<!-- template 可以作为隐藏div，不占用dom元素资源，因此不能使用v-show-->
+
+<!-- v-show 采用的是 "display:none"，频繁的显示与隐藏采用 -->
+
+<style>
+    .box {
+        width: 100px;
+        height: 100px;
+    }
+
+    .red {
+        background-color: red;
+    }
+
+    .blue {
+        background-color: blue;
+    }
+</style>
+
+<body>
+    <div id="app">
+        <button @click="colorChange">{{text}}</button>
+        <div class="box red" v-if="show"></div>
+        <div class="box blue" v-else></div>
+        <div class="box red" v-show="show"></div>
+
+    </div>
+
+</body>
+<script>
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            show: true,
+            text: '红色'
+        },
+        methods: {
+            colorChange() {
+                this.show = !this.show;
+                this.text = this.show ? '红色' : '蓝色';
+            }
+        }
+
+    });
+
+
+</script>
+
+
+
+</html>
