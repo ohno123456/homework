@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>数据绑定</title>
+    <script src='https://cdn.jsdelivr.net/npm/vue@2.6.0'></script>
+</head>
+
+<body>
+    <div id="app">
+        <mycontent v-bind="childInfo" @add = "changeAdd"></mycontent>
+        <mycontent v-bind="childInfo" @add = "changeAdd"></mycontent>
+        <p>{{ childInfo.num }}</p>
+        <button @click = "handleTitle" >改变title</button>
+    </div>
+
+    <script>
+
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                // content:"niu",
+                //title:18
+                childInfo: {
+                    content: "niu",
+                    title: 20,
+                    num: 1
+                }
+            },
+            methods:{
+              changeAdd (value) {
+                    this.childInfo.num = value;
+              },
+              handleTitle () {
+
+                this.childInfo.title = 21;
+              }
+            },
+            components: {
+                "mycontent": {
+                    // props:["title","content"],
+                    props: {
+                        title: {
+                            type: String,
+                            default: "zuimei",//默认值
+                            required: true
+                        },
+                        content: {
+                            type: Number,
+                            validator(value) {
+                                return value > 100
+                            }
+                        },
+                        num:{
+                            type:Number
+                        }
+                    },
+
+                    data() {
+                        return {
+                           mynum: this.num
+                        }
+                    },
+                    template: `
+                <div>
+                    <h4>{{ title }}</h4>
+                    <p>{{ content }}</p>
+                    <p>{{ mynum }}</p>
+                    <button @click = "handleAdd">增加</button>
+                    
+                    </div>
+                    `,
+                    methods: {
+                        handleAdd() {
+                           this.mynum++;
+                            this.$emit("add",this.mynum);
+                        }
+                    },
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

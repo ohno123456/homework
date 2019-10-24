@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src='https://cdn.jsdelivr.net/npm/vue@2.6.0'></script>
+</head>
+
+<body>
+    <div id="app">
+        <hello-world></hello-world>
+        <hello></hello>
+    </div>
+
+    <script>
+        Vue.component("helloWorld", {
+            data() {
+                return {
+                    msg: "hello world!"
+                }
+                    // 采用函数是 组件的独特性
+            },
+            template: `
+            <div>
+                <span>{{msg}}</span>
+                </div>
+            `
+        });
+        var vm = new Vue({
+            el: '#app',
+            data: {},
+            methods: {},
+            components: {
+                "hello": {
+                    template: `<div>hello<div>`
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
