@@ -1,6 +1,7 @@
 let http = require("http");
 let url = require("url");
 let ejs = require("ejs");
+var querystring = require('querystring');
 
 http.createServer(function (req, res) {
     let pathStr = url.parse(req.url,true);
@@ -14,10 +15,18 @@ http.createServer(function (req, res) {
             res.end(data);
         });
     } else if (pathname == "/dologin" && postmethod == "POST") {
-        ejs.renderFile("views/login_success.ejs", {username:pathStr}, function (error, data) {
-            console.log(pathStr.query.username);
-            res.end(data);
+        let postStr = "";
+        req.on("data",function(chunk){
+        postStr += chunk;
         });
+        req.on("end",function(err,chunk){
+            console.log(postStr);
+            ejs.renderFile("views/login_success.ejs", {username:querystring.parse(postStr).username}, function (error, data) {
+                res.end(data);
+            });
+
+        });
+       
 
     } else {
         res.end("error!");
