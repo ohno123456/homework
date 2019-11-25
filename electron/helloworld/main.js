@@ -5,21 +5,37 @@ path = require("path");
 global.shareObject = {
 name:"LiuYu"
 }
+let pluginName;
+switch (process.platform) {
+  case 'win32':
+    pluginName = '/lib/pepflashplayer32.dll'
+    break
+  case 'win64':
+    pluginName = '/lib/pepflashplayer64.dll'
+    break
+}
+
+app.commandLine.appendSwitch('ppapi-flash-path', path.join(__dirname, pluginName));
+
+
+app.commandLine.appendSwitch('ppapi-flash-version', '17.0.0.169')
+
 let win;
 app.on("ready",ly_createWindow);
 function ly_createWindow(){
 
     win = new BrowserWindow({
-        width: 300*2,
-        height: 300,
+        width: 1280,
+        height: 720,
         movable:true,
         resizable:true,
         webPreferences: {
-            nodeIntegration: true
+            nodeIntegration: true,
+            plugins: true
         }  //electron 5.0之后该参数默认值是false，
     });
-     win.loadURL(path.join(__dirname,"./index.html"));
-     win.webContents.openDevTools();
+     win.loadURL(path.join("http://www.main.org.cn/"));
+    // win.webContents.openDevTools();
 //引入菜单文件
 require("./menu.js");
 //在主进程里打印的数据在终端控制台打印，渲染进程打印的数据在页面控制台显示
