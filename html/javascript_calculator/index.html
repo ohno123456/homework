@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Javascript Loan Calculator</title>
+    <script src="./calculator.js"></script>
+    <style>
+        .output {
+            font-weight: bold;
+        }
+
+        #payment {
+            text-decoration: underline;
+        }
+
+        #graph {
+            border: solid black 1px;
+        }
+
+        th,
+        td {
+            vertical-align: top;
+        }
+
+        html,body {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+       p{
+           position:static;
+       }
+        table {
+            position: relative;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <table style="height:320px;">
+        <tr>
+            <th>Enter Loan Data:</th>
+            <th></th>
+            <th>Loan Balance, Calculative Equity, and interest Payments</th>
+        </tr>
+        <tr>
+            <td>Amount of Loan($):</td>
+            <td><input id="amount" onchange="calculate();"></td>
+            <td rowspan=8>
+                <canvas id="graph" width="400" height="250"></canvas>
+            </td>
+        </tr>
+        <tr>
+            <td>Annual interest(%):</td>
+            <td><input id="apr" onchange="calculate();"></td>
+        </tr>
+        <tr>
+            <td>Repayment Period(years):</td>
+            <td><input id="years" onchange="calculate();"></td>
+        </tr>
+        <tr>
+            <td>Zipcode(to find lenders):</td>
+            <td><input id="zipcode" onchange="calculate();"></td>
+        </tr>
+        <tr>
+            <td>Approximate Payments:</td>
+            <td><button onclick="calculate();">Calculate</button></td>
+        </tr>
+        <tr>
+            <td>Monthly payment:</td>
+            <td>$<span class="output" id="payment"></span></td>
+        </tr>
+        <tr>
+            <td>Total Payment:</td>
+            <td>$<span class="output" id="total"></span></td>
+        </tr>
+        <tr>
+            <td>Total interest:</td>
+            <td>$<span class="output" id="totalinterest"></span></td>
+        </tr>
+        <tr>
+            <th>Sponsors:</th>
+            <td colspan=2>
+                Apply for your loan with one of these fine lenders:
+                <divc id="lenders">
+                    </div>
+            </td>
+        </tr>
+    </table>
+    <p id = "test" style = "font-size: 20px;">
+    hello world!
+    </p>
+
+
+</body>
+<script type="text/Javascript">
+let bodyHeight = window.screen.height;
+console.log(document.getElementsByTagName("table")[0]);
+console.log(bodyHeight);
+let tableHeight = parseInt(document.getElementsByTagName("table")[0].style.height);
+console.log(tableHeight);
+document.getElementsByTagName("table")[0].style.top = (bodyHeight-tableHeight)/2+"px";
+
+let test = document.getElementById("test");
+test.setAttribute("style","color: red;");
+
+</script>
+
+</html>
